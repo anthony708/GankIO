@@ -14,6 +14,7 @@
 		92A1952A1C4DDF4500416EEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92A195281C4DDF4500416EEC /* LaunchScreen.storyboard */; };
 		92A195351C4DDF4500416EEC /* GankIOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A195341C4DDF4500416EEC /* GankIOTests.swift */; };
 		92A195401C4DDF4500416EEC /* GankIOUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1953F1C4DDF4500416EEC /* GankIOUITests.swift */; };
+		92A1954E1C4E0F2C00416EEC /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1954D1C4E0F2C00416EEC /* CustomTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		92A1953B1C4DDF4500416EEC /* GankIOUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GankIOUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A1953F1C4DDF4500416EEC /* GankIOUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GankIOUITests.swift; sourceTree = "<group>"; };
 		92A195411C4DDF4500416EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92A1954D1C4E0F2C00416EEC /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				92A1951F1C4DDF4500416EEC /* AppDelegate.swift */,
 				92A195211C4DDF4500416EEC /* ViewController.swift */,
+				92A1954D1C4E0F2C00416EEC /* CustomTableViewCell.swift */,
 				92A195231C4DDF4500416EEC /* Main.storyboard */,
 				92A195261C4DDF4500416EEC /* Assets.xcassets */,
 				92A195281C4DDF4500416EEC /* LaunchScreen.storyboard */,
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92A1954E1C4E0F2C00416EEC /* CustomTableViewCell.swift in Sources */,
 				92A195221C4DDF4500416EEC /* ViewController.swift in Sources */,
 				92A195201C4DDF4500416EEC /* AppDelegate.swift in Sources */,
 			);
