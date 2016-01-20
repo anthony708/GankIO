@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -26,6 +27,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func clearCache(sender: AnyObject) {
+        KingfisherManager.sharedManager.cache.clearMemoryCache()
+        KingfisherManager.sharedManager.cache.clearDiskCache()
+    }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titleNames.count
@@ -38,18 +44,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.titleLabel.text = titleNames[indexPath.row]
         cell.dateLabel.text = titleNames[indexPath.row]
         
-        let imageData: NSData = NSData(contentsOfURL: NSURL(string: beautyImages[indexPath.row])!)!
-        let originImage = UIImage(data: imageData, scale: 1.0)
-        let resizedImage : UIImage
-        if originImage?.size.height > originImage?.size.width {
-            resizedImage = resizeImage(originImage!, size: CGSizeMake(320, (originImage?.size.height)! / (originImage?.size.width)! * 320))
-        } else {
-            resizedImage = resizeImage(originImage!, size: CGSizeMake((originImage?.size.width)! / (originImage?.size.height)! * 240, 240))
-        }
+//        let imageData: NSData = NSData(contentsOfURL: NSURL(string: beautyImages[indexPath.row])!)!
+//        let originImage = UIImage(data: imageData, scale: 1.0)
+//        let resizedImage : UIImage
+//        if originImage?.size.height > originImage?.size.width {
+//            resizedImage = resizeImage(originImage!, size: CGSizeMake(320, (originImage?.size.height)! / (originImage?.size.width)! * 320))
+//        } else {
+//            resizedImage = resizeImage(originImage!, size: CGSizeMake((originImage?.size.width)! / (originImage?.size.height)! * 240, 240))
+//        }
+//        
+//        let cropImage = cropRectImage(resizedImage)
+//        cell.beautyImageView.image = cropImage
         
-        let cropImage = cropRectImage(resizedImage)
+        cell.beautyImageView.kf_setImageWithURL(NSURL(string: beautyImages[indexPath.row])!, placeholderImage: nil)
         
-        cell.beautyImageView.image = cropImage
         return cell
     }
     

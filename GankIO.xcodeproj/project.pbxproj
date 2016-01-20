@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E1A57C0FF6C5ADF6A5EC933 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0410EE19C272CC1AD3A5FFAD /* Pods.framework */; };
 		92A195201C4DDF4500416EEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1951F1C4DDF4500416EEC /* AppDelegate.swift */; };
 		92A195221C4DDF4500416EEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A195211C4DDF4500416EEC /* ViewController.swift */; };
 		92A195251C4DDF4500416EEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92A195231C4DDF4500416EEC /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0410EE19C272CC1AD3A5FFAD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A1951C1C4DDF4500416EEC /* GankIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GankIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A1951F1C4DDF4500416EEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92A195211C4DDF4500416EEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		92A1953F1C4DDF4500416EEC /* GankIOUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GankIOUITests.swift; sourceTree = "<group>"; };
 		92A195411C4DDF4500416EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92A1954D1C4E0F2C00416EEC /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		C95D33C40F2B77DC72ACA0CA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E24CC408F373E664A957A642 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E1A57C0FF6C5ADF6A5EC933 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +81,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E8FD59299198409CC356F38 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0410EE19C272CC1AD3A5FFAD /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8D011CDC48C71CCCB505DD9A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C95D33C40F2B77DC72ACA0CA /* Pods.debug.xcconfig */,
+				E24CC408F373E664A957A642 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		92A195131C4DDF4500416EEC = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +105,8 @@
 				92A195331C4DDF4500416EEC /* GankIOTests */,
 				92A1953E1C4DDF4500416EEC /* GankIOUITests */,
 				92A1951D1C4DDF4500416EEC /* Products */,
+				8D011CDC48C71CCCB505DD9A /* Pods */,
+				4E8FD59299198409CC356F38 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,9 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92A195441C4DDF4500416EEC /* Build configuration list for PBXNativeTarget "GankIO" */;
 			buildPhases = (
+				A0247D19740E922CF55E8F98 /* Check Pods Manifest.lock */,
 				92A195181C4DDF4500416EEC /* Sources */,
 				92A195191C4DDF4500416EEC /* Frameworks */,
 				92A1951A1C4DDF4500416EEC /* Resources */,
+				220CC0812F86BAA81AB49814 /* Embed Pods Frameworks */,
+				069F3EAB3BDBC3681A30E304 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -256,6 +283,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		069F3EAB3BDBC3681A30E304 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		220CC0812F86BAA81AB49814 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0247D19740E922CF55E8F98 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		92A195181C4DDF4500416EEC /* Sources */ = {
@@ -402,6 +477,7 @@
 		};
 		92A195451C4DDF4500416EEC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C95D33C40F2B77DC72ACA0CA /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GankIO/Info.plist;
@@ -414,6 +490,7 @@
 		};
 		92A195461C4DDF4500416EEC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E24CC408F373E664A957A642 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GankIO/Info.plist;
