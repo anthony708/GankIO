@@ -405,6 +405,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GankIO/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhuduan.GankIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -416,6 +417,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GankIO/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhuduan.GankIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -489,6 +491,7 @@
 				92A195461C4DDF4500416EEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		92A195471C4DDF4500416EEC /* Build configuration list for PBXNativeTarget "GankIOTests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +500,7 @@
 				92A195491C4DDF4500416EEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		92A1954A1C4DDF4500416EEC /* Build configuration list for PBXNativeTarget "GankIOUITests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +509,7 @@
 				92A1954C1C4DDF4500416EEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

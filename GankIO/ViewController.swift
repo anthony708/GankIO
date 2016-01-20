@@ -10,12 +10,16 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var titleNames = ["20160119", "20160118", "20160117", "20160116", "20160115"]
-    var beautyImages = ["pic1", "pic1", "pic1", "pic1", "pic1"]
+    @IBOutlet weak var mainTableView: UITableView!
+    let url = NSURL(string: "http://gank.avosapps.com/api/data/%E7%A6%8F%E5%88%A9/10/1")
+    
+    var titleNames = [String]()
+    var beautyImages = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        loadData(url!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +38,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.titleLabel.text = titleNames[indexPath.row]
         cell.dateLabel.text = titleNames[indexPath.row]
         
-        let originImage = UIImage(named: beautyImages[indexPath.row])
+        let imageData: NSData = NSData(contentsOfURL: NSURL(string: beautyImages[indexPath.row])!)!
+        let originImage = UIImage(data: imageData, scale: 1.0)
         let resizedImage : UIImage
         if originImage?.size.height > originImage?.size.width {
             resizedImage = resizeImage(originImage!, size: CGSizeMake(320, (originImage?.size.height)! / (originImage?.size.width)! * 320))
@@ -61,9 +66,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         var newSize: CGSize
         if widthRatio > heightRatio {
-            newSize = CGSizeMake(size.width * heightRatio, size.height * heightRatio)
+            newSize = CGSizeMake(sourceSize.width * heightRatio, sourceSize.height * heightRatio)
         } else {
-            newSize = CGSizeMake(size.width * widthRatio, size.height * widthRatio)
+            newSize = CGSizeMake(sourceSize.width * widthRatio, sourceSize.height * widthRatio)
         }
         
         let rect = CGRectMake(0, 0, newSize.width, newSize.height)
@@ -88,13 +93,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let imageRef = CGImageCreateWithImageInRect(image.CGImage, cropRect)
         if let imageTar = imageRef {
-            print("image crop suceess!")
+//            print("image crop suceess!")
             return UIImage(CGImage: imageTar, scale: UIScreen.mainScreen().scale, orientation: image.imageOrientation)
 
         } else {
-            print("image crop FAILED!")
+//            print("image crop FAILED!")
             return image
         }
+    }
+    
+    func loadData(url: NSURL) {
+        
+        let data: NSData! = try? NSData.init(contentsOfURL: url, options:NSDataReadingOptions.DataReadingUncached)
+        let json = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+        if let resultsDict = json as? [String: AnyObject] {
+            let resultsDictionary = resultsDict["results"] as? [[String: AnyObject]]
+            for item in resultsDictionary! {
+                let publishedAt = item["publishedAt"] as! String
+                let imageURL = item["url"] as! String
+                //            print(publishedAt)
+                titleNames.append(publishedAt.substringToIndex(publishedAt.startIndex.advancedBy(10)))
+                beautyImages.append(imageURL)
+            }
+            mainTableView.reloadData()
+        }
+        
     }
 }
 
