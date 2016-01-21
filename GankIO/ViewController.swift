@@ -9,25 +9,41 @@
 import UIKit
 import Kingfisher
 import PullToRefreshSwift
+import XWSwiftRefresh
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var mainTableView: UITableView!
-    let url = NSURL(string: "http://gank.avosapps.com/api/data/%E7%A6%8F%E5%88%A9/10/1")
+    let urlString: String = "http://gank.avosapps.com/api/data/%E7%A6%8F%E5%88%A9/10/"
+    var page = 1
     
     var titleNames = [String]()
     var beautyImages = [String]()
 
     override func viewDidLoad() {
         let options = PullToRefreshOption()
-        options.backgroundColor = UIColor.grayColor()
+        options.backgroundColor = UIColor.whiteColor()
         options.indicatorColor = UIColor.whiteColor()
         
+        let mainURL = NSURL(string: self.urlString + String(self.page))
+        
+        // pull to refresh
         self.mainTableView.addPullToRefresh(options: options, refreshCompletion: { [weak self] in
-            self?.loadData((self?.url)!)
+            // 上拉刷新清除
+            self!.titleNames = []
+            self!.beautyImages = []
+            self!.page = 1
+            self?.loadData(mainURL!)
             })
+        
+        // pull up to load
+        self.mainTableView.tableFooterView = UIView()
+//        self.mainTableView.registerClass(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        self.mainTableView.footerView = XWRefreshAutoNormalFooter(target: self, action: "upPullLoadData")
+        
         // Do any additional setup after loading the view, typically from a nib.
-        loadData(url!)
+        loadData(mainURL!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -137,8 +153,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             mainTableView.reloadData()
             mainTableView.stopPullToRefresh()
+            mainTableView.footerView?.endRefreshing()
         }
+    }
+    
+    func upPullLoadData() {
         
+        page += 1
+        let url: NSURL = NSURL(string: self.urlString + String(self.page))!
+        loadData(url)
     }
 }
 
