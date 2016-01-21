@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import PullToRefreshSwift
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -18,7 +19,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var beautyImages = [String]()
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+        let options = PullToRefreshOption()
+        options.backgroundColor = UIColor.grayColor()
+        options.indicatorColor = UIColor.whiteColor()
+        
+        self.mainTableView.addPullToRefresh(options: options, refreshCompletion: { [weak self] in
+            self?.loadData((self?.url)!)
+            })
         // Do any additional setup after loading the view, typically from a nib.
         loadData(url!)
     }
@@ -44,20 +51,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.titleLabel.text = titleNames[indexPath.row]
         cell.dateLabel.text = titleNames[indexPath.row]
         
-//        let imageData: NSData = NSData(contentsOfURL: NSURL(string: beautyImages[indexPath.row])!)!
-//        let originImage = UIImage(data: imageData, scale: 1.0)
-//        let resizedImage : UIImage
-//        if originImage?.size.height > originImage?.size.width {
-//            resizedImage = resizeImage(originImage!, size: CGSizeMake(320, (originImage?.size.height)! / (originImage?.size.width)! * 320))
-//        } else {
-//            resizedImage = resizeImage(originImage!, size: CGSizeMake((originImage?.size.width)! / (originImage?.size.height)! * 240, 240))
-//        }
-//        
-//        let cropImage = cropRectImage(resizedImage)
-//        cell.beautyImageView.image = cropImage
         
-        cell.beautyImageView.kf_setImageWithURL(NSURL(string: beautyImages[indexPath.row])!, placeholderImage: nil)
-        
+        cell.beautyImageView.kf_setImageWithURL(NSURL(string: beautyImages[indexPath.row])!,
+            placeholderImage: nil,
+            optionsInfo: nil,
+            progressBlock: nil,
+            completionHandler: { (image, error, CacheType, imageURL) -> () in
+//                let imageData: NSData = NSData(contentsOfURL: NSURL(string: self.beautyImages[indexPath.row])!)!
+//                let originImage = UIImage(data: imageData, scale: 1.0)
+
+                let resizedImage : UIImage
+                if image?.size.height > image?.size.width {
+                    resizedImage = self.resizeImage(image!, size: CGSizeMake(320, (image?.size.height)! / (image?.size.width)! * 320))
+                } else {
+                    resizedImage = self.resizeImage(image!, size: CGSizeMake((image?.size.width)! / (image?.size.height)! * 240, 240))
+                }
+                
+                let cropImage = self.cropRectImage(resizedImage)
+                cell.beautyImageView.image = cropImage
+        })
         return cell
     }
     
@@ -124,6 +136,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 beautyImages.append(imageURL)
             }
             mainTableView.reloadData()
+            mainTableView.stopPullToRefresh()
         }
         
     }
