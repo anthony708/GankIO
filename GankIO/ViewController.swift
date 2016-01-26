@@ -55,7 +55,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         KingfisherManager.sharedManager.cache.clearMemoryCache()
         KingfisherManager.sharedManager.cache.clearDiskCache()
     }
-
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titleNames.count
     }
@@ -64,18 +64,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cellIdentifier = "cell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CustomTableViewCell
         
-        cell.titleLabel.text = titleNames[indexPath.row]
+        cell.titleButton.setTitle(titleNames[indexPath.row], forState: .Normal)
         cell.dateLabel.text = titleNames[indexPath.row]
         
-        
-        cell.beautyImageView.kf_setImageWithURL(NSURL(string: beautyImages[indexPath.row])!,
+        cell.beautyImageButton.imageView!.kf_setImageWithURL(
+            NSURL(string: beautyImages[indexPath.row])!,
             placeholderImage: nil,
             optionsInfo: nil,
             progressBlock: nil,
             completionHandler: { (image, error, CacheType, imageURL) -> () in
-//                let imageData: NSData = NSData(contentsOfURL: NSURL(string: self.beautyImages[indexPath.row])!)!
-//                let originImage = UIImage(data: imageData, scale: 1.0)
-
+                
                 let resizedImage : UIImage
                 if image?.size.height > image?.size.width {
                     resizedImage = self.resizeImage(image!, size: CGSizeMake(320, (image?.size.height)! / (image?.size.width)! * 320))
@@ -84,14 +82,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
                 
                 let cropImage = self.cropRectImage(resizedImage)
-                cell.beautyImageView.image = cropImage
+                cell.beautyImageButton.setBackgroundImage(cropImage, forState: .Normal)
         })
+        cell.beautyImageButton.tag = indexPath.row
+        cell.titleButton.tag = indexPath.row
         return cell
-    }
-    
-    // hide status bar
-    override func prefersStatusBarHidden() -> Bool {
-        return true
     }
     
     func resizeImage(image: UIImage, size: CGSize) -> UIImage {
@@ -129,11 +124,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let imageRef = CGImageCreateWithImageInRect(image.CGImage, cropRect)
         if let imageTar = imageRef {
-//            print("image crop suceess!")
             return UIImage(CGImage: imageTar, scale: UIScreen.mainScreen().scale, orientation: image.imageOrientation)
 
         } else {
-//            print("image crop FAILED!")
             return image
         }
     }
@@ -147,7 +140,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             for item in resultsDictionary! {
                 let publishedAt = item["publishedAt"] as! String
                 let imageURL = item["url"] as! String
-                //            print(publishedAt)
                 titleNames.append(publishedAt.substringToIndex(publishedAt.startIndex.advancedBy(10)))
                 beautyImages.append(imageURL)
             }
@@ -163,5 +155,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let url: NSURL = NSURL(string: self.urlString + String(self.page))!
         loadData(url)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let row = (sender as! UIButton).tag
+        if segue.identifier == "showBeautyImageDetail" {
+            let destinationController = segue.destinationViewController as! BeautyDetailViewController
+            destinationController.beautyDetailImageString = self.beautyImages[row]
+        }
+    }
+    
 }
 
