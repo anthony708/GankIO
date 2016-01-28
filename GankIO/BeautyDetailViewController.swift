@@ -13,8 +13,7 @@ class BeautyDetailViewController: UIViewController {
     @IBOutlet var beautyDetailImageView: UIImageView!
     var beautyDetailImageString: String!
 
-    @IBAction func saveImgeToAlbum(sender: AnyObject) {
-        print("\(self.beautyDetailImageString)")
+    @IBAction func saveImageToAlbum(sender: AnyObject) {
         UIImageWriteToSavedPhotosAlbum(self.beautyDetailImageView.image!, self, "image:didFinishSavingWithError:contextInfo:", nil)
     }
     

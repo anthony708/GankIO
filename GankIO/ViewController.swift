@@ -163,6 +163,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let destinationController = segue.destinationViewController as! BeautyDetailViewController
             destinationController.beautyDetailImageString = self.beautyImages[row]
         }
+        if segue.identifier == "showContentDetail" {
+            let destinationController = segue.destinationViewController as! ContentTableViewController
+            
+            let year = (titleNames[row] as NSString).substringToIndex(4)
+            let month = (titleNames[row] as NSString).substringWithRange(NSMakeRange(5, 2))
+            let day = (titleNames[row] as NSString).substringFromIndex(8)
+            let convertDate: String = "\(year)/\(month)/\(day)"
+            
+            destinationController.dateString = convertDate
+        }
     }
     
 }
