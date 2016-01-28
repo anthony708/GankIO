@@ -47,7 +47,12 @@ class ContentTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("ContentCell", forIndexPath: indexPath) as! ContentTableViewCell
         // Configure the cell...
         let cellText = gankDataList[indexPath.section].descData[indexPath.row]
-        cell.descLabel.text = cellText
+        let cellUrl = gankDataList[indexPath.section].urlList[indexPath.row]
+        let htmlText = try? NSAttributedString(data: "<a href=\"\(cellUrl)\" target=\"__blank\">\(cellText)</a>".dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!,
+            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            documentAttributes: nil)
+        cell.descTextView.attributedText = htmlText
+    
         return cell
     }
     
@@ -78,3 +83,4 @@ class ContentTableViewController: UITableViewController {
         }
     }
 }
+

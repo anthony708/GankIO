@@ -10,7 +10,8 @@ import UIKit
 
 class ContentTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var descLabel: UILabel!
+    
+    @IBOutlet weak var descTextView: UITextView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
