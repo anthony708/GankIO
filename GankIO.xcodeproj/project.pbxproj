@@ -20,6 +20,7 @@
 		92A195401C4DDF4500416EEC /* GankIOUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1953F1C4DDF4500416EEC /* GankIOUITests.swift */; };
 		92A1954E1C4E0F2C00416EEC /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1954D1C4E0F2C00416EEC /* CustomTableViewCell.swift */; };
 		92BAA7D91C55E3B30049D0A2 /* BeautyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BAA7D81C55E3B30049D0A2 /* BeautyDetailViewController.swift */; };
+		92E0A8681C62F4C400CC86DA /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E0A8671C62F4C400CC86DA /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		92A195411C4DDF4500416EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92A1954D1C4E0F2C00416EEC /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		92BAA7D81C55E3B30049D0A2 /* BeautyDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeautyDetailViewController.swift; sourceTree = "<group>"; };
+		92E0A8671C62F4C400CC86DA /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		C95D33C40F2B77DC72ACA0CA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E24CC408F373E664A957A642 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +140,7 @@
 				9222B19A1C586FEC005B0811 /* ContentTableViewController.swift */,
 				9222B19C1C5893BC005B0811 /* ContentTableViewCell.swift */,
 				9222B1A01C58D906005B0811 /* GankCategory.swift */,
+				92E0A8671C62F4C400CC86DA /* WebViewController.swift */,
 				92A195231C4DDF4500416EEC /* Main.storyboard */,
 				92A195261C4DDF4500416EEC /* Assets.xcassets */,
 				92A195281C4DDF4500416EEC /* LaunchScreen.storyboard */,
@@ -356,6 +359,7 @@
 				92BAA7D91C55E3B30049D0A2 /* BeautyDetailViewController.swift in Sources */,
 				92A195201C4DDF4500416EEC /* AppDelegate.swift in Sources */,
 				9222B19D1C5893BC005B0811 /* ContentTableViewCell.swift in Sources */,
+				92E0A8681C62F4C400CC86DA /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

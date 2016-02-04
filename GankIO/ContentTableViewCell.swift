@@ -10,8 +10,9 @@ import UIKit
 
 class ContentTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var descLabel: UILabel!
     
-    @IBOutlet weak var descTextView: UITextView!
+    var labelURL = ""
 
     override func awakeFromNib() {
         super.awakeFromNib()
