@@ -18,6 +18,9 @@ class ContentTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         loadContentData(NSURL(string: contentURL + dateString)!)
     }
 
@@ -49,7 +52,7 @@ class ContentTableViewController: UITableViewController {
         let cellText = gankDataList[indexPath.section].descData[indexPath.row]
         cell.labelURL = gankDataList[indexPath.section].urlList[indexPath.row]
         cell.descLabel.text = cellText
-    
+
         return cell
     }
     
