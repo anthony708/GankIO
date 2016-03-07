@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 import PullToRefreshSwift
 import XWSwiftRefresh
+import Alamofire
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -131,28 +132,56 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+//    func loadData(url: NSURL) {
+//        
+//        let data: NSData! = try? NSData.init(contentsOfURL: url, options:NSDataReadingOptions.DataReadingUncached)
+//        let json = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+//        if let resultsDict = json as? [String: AnyObject] {
+//            let resultsDictionary = resultsDict["results"] as? [[String: AnyObject]]
+//            for item in resultsDictionary! {
+//                let publishedAt = item["publishedAt"] as! String
+//                let imageURL = item["url"] as! String
+//                titleNames.append(publishedAt.substringToIndex(publishedAt.startIndex.advancedBy(10)))
+//                beautyImages.append(imageURL)
+//            }
+//            mainTableView.reloadData()
+//            mainTableView.stopPullToRefresh()
+//            mainTableView.footerView?.endRefreshing()
+//        }
+//    }
+    
     func loadData(url: NSURL) {
         
-        let data: NSData! = try? NSData.init(contentsOfURL: url, options:NSDataReadingOptions.DataReadingUncached)
-        let json = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-        if let resultsDict = json as? [String: AnyObject] {
-            let resultsDictionary = resultsDict["results"] as? [[String: AnyObject]]
-            for item in resultsDictionary! {
-                let publishedAt = item["publishedAt"] as! String
-                let imageURL = item["url"] as! String
-                titleNames.append(publishedAt.substringToIndex(publishedAt.startIndex.advancedBy(10)))
-                beautyImages.append(imageURL)
+        //        let data: NSData! = try? NSData.init(contentsOfURL: url, options:NSDataReadingOptions.DataReadingUncached)
+        //        let json = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+        Alamofire.request(.GET, url, parameters: ["foo": "bar"]).responseJSON { response in
+            if let json = response.result.value {
+                print("\(json)")
+                
+                if let resultsDict = json as? [String: AnyObject] {
+                    let resultsDictionary = resultsDict["results"] as? [[String: AnyObject]]
+                    for item in resultsDictionary! {
+                        let publishedAt = item["publishedAt"] as! String
+                        let imageURL = item["url"] as! String
+                        self.titleNames.append(publishedAt.substringToIndex(publishedAt.startIndex.advancedBy(10)))
+                        self.beautyImages.append(imageURL)
+                    }
+                    self.mainTableView.reloadData()
+                }
+                
             }
-            mainTableView.reloadData()
-            mainTableView.stopPullToRefresh()
-            mainTableView.footerView?.endRefreshing()
         }
+        
+        mainTableView.stopPullToRefresh()
+        mainTableView.footerView?.endRefreshing()
+        
     }
     
     func upPullLoadData() {
         
         page += 1
         let url: NSURL = NSURL(string: self.urlString + String(self.page))!
+        print("page: \(page), url: \(url)")
         loadData(url)
     }
     
